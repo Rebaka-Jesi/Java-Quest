@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A complete, gamified learning path to master Java, Object-Oriented Programming, and Data Structures & Algorithms.">
+    <title>Java Quest - Your Complete Java Learning Path</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#home" class="logo">Java Quest</a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#learning-path">Learning Path</a></li>
+                <li><a href="#about-us">About Us</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="auth-buttons">
+                <button class="btn btn-login">Log In</button>
+                <button class="btn btn-signup">Sign Up</button>
+            </div>
+            <div id="profileMenu" class="profile-menu">
+                <span id="profileUsername"></span>
+                <button id="logoutBtn" class="btn btn-logout">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <header id="home" class="hero-section">
+        <div class="hero-content">
+            <h1 class="hero-title">Your Complete Java & DSA Journey</h1>
+            <p class="hero-subtitle">Master Java from scratch, conquer OOP concepts, and ace Data Structures & Algorithms with a gamified learning experience.</p>
+            <a href="#learning-path" class="cta-button">Start Your Quest</a>
+        </div>
+    </header>
+
+    <main>
+        <section id="learning-path" class="learning-path-section">
+            <h2 class="section-title">Your Structured Learning Path</h2>
+            <div class="roadmap-timeline">
+                <a href="#phase-1" class="phase-link current-phase">Phase 1: Basics</a>
+                <a href="#phase-2" class="phase-link">Phase 2: OOP</a>
+                <a href="#phase-3" class="phase-link">Phase 3: DSA</a>
+            </div>
+            <div class="progress-container">
+                <div class="progress-bar-container">
+                    <div class="progress-bar" id="progressBar"></div>
+                </div>
+                <span class="progress-text" id="progressText">0% Complete</span>
+            </div>
+
+            <div class="phase-section" id="phase-1">
+                <h3 class="phase-title">Phase 1: Java Basics (Foundations)</h3>
+                <div class="modules-container">
+                    <div class="module-card" data-module="1">
+                        <div class="module-header">
+                            <h4 class="module-title">Level 1: Data Types 💡</h4>
+                            <span class="module-status">Locked</span>
+                        </div>
+                        <div class="module-content">
+                            <p class="goal-text">🎯 Goal for this Level: Learn how Java stores numbers, words, and true/false values. By the end, you’ll be able to create your own student info card!</p>
+                            <div class="content-section concept-section">
+                                <h4>Concept Summary</h4>
+                                <p>Data types are like special containers that hold different kinds of information. Java has primitive types (simple values) and non-primitive types (more complex objects).</p>
+                                <h4 class="sub-heading">Key Notes</h4>
+                                <ul>
+                                    <li><strong>Primitive Types:</strong> Think of these as basic building blocks: `int` for whole numbers, `double` for decimals, `boolean` for `true`/`false`, and `char` for single characters.</li>
+                                    <li><strong>Non-Primitive Types:</strong> These are more powerful. `String` stores text, and `arrays` hold a collection of values of the same type.</li>
+                                </ul>
+                            </div>
+                            <div class="content-section extra-learning-section">
+                                <h4>Extra Learning</h4>
+                                <ul>
+                                    <li><a href="https://youtu.be/mQyI0wJv_9w" target="_blank" rel="noopener noreferrer">YouTube: Java Data Types Explained Simply</a></li>
+                                    <li><a href="https://www.w3schools.com/java/java_data_types.asp" target="_blank" rel="noopener noreferrer">Article: W3Schools Java Data Types</a></li>
+                                </ul>
+                            </div>
+                            <div class="content-section challenges">
+                                <h4>Challenges</h4>
+                                <ol>
+                                    <li><strong>Mini Challenge:</strong> Print your age, height (with a decimal), and a boolean value (`isStudent`).</li>
+                                    <li><strong>Coding Quest:</strong> Store the marks of 5 subjects in an array and print each one.</li>
+                                </ol>
+                            </div>
+                            <div class="content-section practice-now-section">
+                                <h4>Practice Now</h4>
+                                <p>Use an online compiler to write your code for the challenges.</p>
+                                <a href="https://www.programiz.com/java-programming/online-compiler/" target="_blank" rel="noopener noreferrer" class="compiler-link"><i class="fas fa-terminal"></i> Programiz Online Java Compiler</a>
+                            </div>
+                           <button class="complete-btn" data-module="1" data-phase="p1">Complete Level 1</button>
+                        </div>
+                    </div>
+                    <div class="module-card" data-module="2">
+                        <div class="module-header">
+                            <h4 class="module-title">Level 2: Variables 📝</h4>
+                            <span class="module-status">Locked</span>
+                        </div>
+                        <div class="module-content">
+                            <p class="goal-text">🎯 Goal for this Level: Master how to declare and use variables to store and manipulate data. You'll learn to swap values and build simple sentences with code!</p>
+                            <div class="content-section concept-section">
+                                <h4>Concept Summary</h4>
+                                <p>Variables are named storage locations in memory. You declare them with a data type and a name, then assign them a value. The `final` keyword makes a variable a constant, so its value can't change.</p>
+                                <h4 class="sub-heading">Key Notes</h4>
+                                <ul>
+                                    <li><strong>Declaration & Initialization:</strong> You must declare a variable's type before you can use it, like `int age;`. You can assign a value right away: `int age = 30;`.</li>
+                                    <li><strong>Scope:</strong> A variable's scope determines where it can be accessed in your code.</li>
+                                </ul>
+                            </div>
+                            <div class="content-section extra-learning-section">
+                                <h4>Extra Learning</h4>
+                                <ul>
+                                    <li><a href="https://youtu.be/E-Y02qVd050" target="_blank" rel="noopener noreferrer">YouTube: Java Variables Explained</a></li>
+                                    <li><a href="https://www.geeksforgeeks.org/variables-in-java/" target="_blank" rel="noopener noreferrer">Article: GeeksforGeeks Variables in Java</a></li>
+                                </ul>
+                            </div>
+                            <div class="content-section challenges">
+                                <h4>Challenges</h4>
+                                <ol>
+                                    <li><strong>Mini Challenge:</strong> Swap two numbers without using a third variable (think outside the box!).</li>
+                                    <li><strong>Coding Quest:</strong> Create variables for a name, age, and grade, then print them in a fun sentence.</li>
+                                </ol>
+                            </div>
+                            <div class="content-section practice-now-section">
+                                <h4>Practice Now</h4>
+                                <p>Use an online compiler to write your code for the challenges.</p>
+                                <a href="https://www.programiz.com/java-programming/online-compiler/" target="_blank" rel="noopener noreferrer" class="compiler-link"><i class="fas fa-terminal"></i> Programiz Online Java Compiler</a>
+                            </div>
+                            <button class="complete-btn" data-module="2" data-phase="p1">Complete Level 2</button>
+                        </div>
+                    </div>
+                    <div class="module-card" data-module="3">
+                        <div class="module-header">
+                            <h4 class="module-title">Level 3: Keywords 🔑</h4>
+                            <span class="module-status">Locked</span>
+                        </div>
+                        <div class="module-content">
+                            <p class="goal-text">🎯 Goal for this Level: Understand Java's reserved words and why you can't use them for your own variables. You'll learn how to follow good naming conventions to write clean code!</p>
+                            <div class="content-section concept-section">
+                                <h4>Concept Summary</h4>
+                                <p>Keywords are words with special, reserved meanings in Java. They are essential for defining the structure and logic of your programs, so the compiler won't let you use them for variable names.</p>
+                                <h4 class="sub-heading">Key Notes</h4>
+                                <ul>
+                                    <li><strong>Reserved Words:</strong> `public`, `static`, `class`, `if`, `else`, `while`, `new`, `void`, and `return` are just a few examples.</li>
+                                    <li><strong>Naming Conventions:</strong> Using descriptive names for your variables (e.g., `studentName` instead of `s`) makes your code easy to read and understand.</li>
+                                </ul>
+                            </div>
+                            <div class="content-section extra-learning-section">
+                                <h4>Extra Learning</h4>
+                                <ul>
+                                    <li><a href="https://youtu.be/kUa8XQ4_88I" target="_blank" rel="noopener noreferrer">YouTube: Java Keywords and Identifiers</a></li>
+                                    <li><a href="https://www.javatpoint.com/java-keywords" target="_blank" rel="noopener noreferrer">Article: JavaTpoint Java Keywords</a></li>
+                                </ul>
+                            </div>
+                            <div class="content-section challenges">
+                                <h4>Challenges</h4>
+                                <ol>
+                                    <li><strong>Mini Challenge:</strong> Try to create a variable named `public` or `class` and see the error message the compiler gives you!</li>
+                                    <li><strong>Coding Quest:</strong> Write a short note in a comment about three different keywords you have used so far.</li>
+                                </ol>
+                            </div>
+                            <div class="content-section practice-now-section">
+                                <h4>Practice Now</h4>
+                                <p>Use an online compiler to write your code for the challenges.</p>
+                                <a href="https://www.programiz.com/java-programming/online-compiler/" target="_blank" rel="noopener noreferrer" class="compiler-link"><i class="fas fa-terminal"></i> Programiz Online Java Compiler</a>
+                            </div>
+                            <button class="complete-btn" data-module="3" data-phase="p1">Complete Level 3</button>
+                        </div>
+                    </div>
+                    <div class="module-card" data-module="4">
+                        <div class="module-header">
+                            <h4 class="module-title">Level 4: Operators ➕➖</h4>
+                            <span class="module-status">Locked</span>
+                        </div>
+                        <div class="module-content">
+                            <p class="goal-text">🎯 Goal for this Level: Learn to perform calculations and comparisons! You'll be able to build a basic calculator and check if a number is even or odd.</p>
+                            <div class="content-section concept-section">
+                                <h4>Concept Summary</h4>
+                                <p>Operators are special symbols used to perform operations on variables and values. They are the action words of your code, allowing you to do math, make comparisons, and assign values.</p>
+                                <h4 class="sub-heading">Key Notes</h4>
+                                <ul>
+                                    <li><strong>Arithmetic:</strong> Use `+`, `-`, `*`, `/`, and `%` (for finding the remainder).</li>
+                                    <li><strong>Relational:</strong> Use `>` (greater than), `<` (less than), `==` (equal to), `!=` (not equal to) to compare values.</li>
+                                    <li><strong>Logical:</strong> Use `&&` (AND), `||` (OR), and `!` (NOT) to combine conditions.</li>
+                                </ul>
+                            </div>
+                            <div class="content-section extra-learning-section">
+                                <h4>Extra Learning</h4>
+                                <ul>
+                                    <li><a href="https://youtu.be/zD5QyWwM-a4" target="_blank" rel="noopener noreferrer">YouTube: Java Operators in 10 Minutes</a></li>
+                                    <li><a href="https://www.javatpoint.com/java-operators" target="_blank" rel="noopener noreferrer">Article: JavaTpoint Java Operators</a></li>
+                                </ul>
+                            </div>
+                            <div class="content-section challenges">
+                                <h4>Challenges</h4>
+                                <ol>
+                                    <li><strong>Mini Challenge:</strong> Create a simple calculator that performs addition, subtraction, multiplication, and division on two numbers.</li>
+                                    <li><strong>Coding Quest:</strong> Write a program that takes a number and checks if it's even or odd using the modulo operator (`%`).</li>
+                                </ol>
+                            </div>
+                            <div class="content-section practice-now-section">
+                                <h4>Practice Now</h4>
+                                <p>Use an online compiler to write your code for the challenges.</p>
+                                <a href="https://www.programiz.com/java-programming/online-compiler/" target="_blank" rel="noopener noreferrer" class="compiler-link"><i class="fas fa-terminal"></i> Programiz Online Java Compiler</a>
+                            </div>
+                            <button class="complete-btn" data-module="4" data-phase="p1">Complete Level 4</button>
+                        </div>
+                    </div>
+                    <div class="module-card" data-module="5">
+                        <div class="module-header">
+                            <h4 class="module-title">Level 5: Conditional Statements 🤔</h4>
+                            <span class="module-status">Locked</span>
+                        </div>
+                        <div class="module-content">
+                            <p class="goal-text">🎯 Goal for this Level: Teach your code to make decisions! You'll be able to create programs that respond differently based on user input, like a simple grading system.</p>
+                            <div class="content-section concept-section">
+                                <h4>Concept Summary</h4>
+                                <p>Conditional statements allow your program to execute different blocks of code based on whether a condition is true or false. They are the logic gates of your program's flow.</p>
+                                <h4 class="sub-heading">Key Notes</h4>
+                                <ul>
+                                    <li><strong>If-else:</strong> The most basic decision-making tool. If a condition is true, do this; otherwise, do that.</li>
+                                    <li><strong>Else-if:</strong> Allows you to check multiple conditions sequentially.</li>
+                                    <li><strong>Switch:</strong> A powerful alternative to long `if-else if` chains when checking a single value against many possible cases.</li>
+                                </ul>
+                            </div>
+                            <div class="content-section extra-learning-section">
+                                <h4>Extra Learning</h4>
+                                <ul>
+                                    <li><a href="https://youtu.be/u88d3v-yq9Y" target="_blank" rel="noopener noreferrer">YouTube: If-Else and Switch Statements</a></li>
+                                    <li><a href="https://www.w3schools.com/java/java_conditions.asp" target="_blank" rel="noopener noreferrer">Article: W3Schools Java Conditions</a></li>
+                                </ul>
+                            </div>
+                            <div class="content-section challenges">
+                                <h4>Challenges</h4>
+                                <ol>
+                                    <li><strong>Mini Challenge:</strong> Write a program to check if a number is positive, negative, or zero.</li>
+                                    <li><strong>Coding Quest:</strong> Take a letter grade (A, B, C, D, or F) and print different feedback using a `switch` statement.</li>
+                                </ol>
+                            </div>
+                            <div class="content-section practice-now-section">
+                                <h4>Practice Now</h4>
+                                <p>Use an online compiler to write your code for the challenges.</p>
+                                <a href="https://www.programiz.com/java-programming/online-compiler/" target="_blank" rel="noopener noreferrer" class="compiler-link"><i class="fas fa-terminal"></i> Programiz Online Java Compiler</a>
+                            </div>
+                            <button class="complete-btn" data-module="5" data-phase="p1">Complete Level 5</button>
+                        </div>
+                    </div>
+                    <div class="module-card" data-module="6">
+                        <div class="module-header">
+                            <h4 class="module-title">Level 6: Looping Statements 🔁</h4>
+                            <span class="module-status">Locked</span>
+                        </div>
+                        <div class="module-content">
+                            <p class="goal-text">🎯 Goal for this Level: Learn to automate tasks and repeat actions with loops. You'll be able to print patterns and perform calculations on multiple numbers efficiently!</p>
+                            <div class="content-section concept-section">
+                                <h4>Concept Summary</h4>
+                                <p>Loops are used to execute a block of code repeatedly. They are crucial for tasks that require repetition, from iterating over a collection of data to printing patterns.</p>
+                                <h4 class="sub-heading">Key Notes</h4>
+                                <ul>
+                                    <li><strong>For loop:</strong> Best for when you know exactly how many times you need to loop.</li>
+                                    <li><strong>While loop:</strong> Great for when a condition needs to be met before the loop stops.</li>
+                                    <li><strong>Do-while loop:</strong> Similar to `while`, but it always executes at least once.</li>
+                                </ul>
+                            </div>
+                            <div class="content-section extra-learning-section">
+                                <h4>Extra Learning</h4>
+                                <ul>
+                                    <li><a href="https://youtu.be/mF8yv_XyR-s" target="_blank" rel="noopener noreferrer">YouTube: Java Loops Tutorial</a></li>
+                                    <li><a href="https://www.javatpoint.com/java-loops" target="_blank" rel="noopener noreferrer">Article: JavaTpoint Java Loops</a></li>
+                                </ul>
+                            </div>
+                            <div class="content-section challenges">
+                                <h4>Challenges</h4>
+                                <ol>
+                                    <li><strong>Mini Challenge:</strong> Print the multiplication table of any number from 1 to 10.</li>
+                                    <li><strong>Coding Quest:</strong> Write a program to print a pyramid pattern of `*`.</li>
+                                    <li><strong>Bonus Quest:</strong> Find the sum of the digits of a given number.</li>
+                                </ol>
+                            </div>
+                            <div class="content-section practice-now-section">
+                                <h4>Practice Now</h4>
+                                <p>Use an online compiler to write your code for the challenges.</p>
+                                <a href="https://www.programiz.com/java-programming/online-compiler/" target="_blank" rel="noopener noreferrer" class="compiler-link"><i class="fas fa-terminal"></i> Programiz Online Java Compiler</a>
+                            </div>
+                            <button class="complete-btn" data-module="6" data-phase="p1">Complete Level 6</button>
+                        </div>
+                    </div>
+                    <div class="module-card" data-module="7">
+                        <div class="module-header">
+                            <h4 class="module-title">Level 7: Functions (Methods) ⚙️</h4>
+                            <span class="module-status">Locked</span>
+                        </div>
+                        <div class="module-content">
+                            <p class="goal-text">🎯 Goal for this Level: Learn to organize your code into reusable blocks. This is a huge step toward becoming a professional programmer!</p>
+                            <div class="content-section concept-section">
+                                <h4>Concept Summary</h4>
+                                <p>Functions (or methods) are blocks of code that perform a specific task. They make your code modular, easier to read, and reusable. You can pass them data (parameters) and they can return a value.</p>
+                                <h4 class="sub-heading">Key Notes</h4>
+                                <ul>
+                                    <li><strong>Defining a method:</strong> A method is defined with a return type, a name, and a list of parameters.</li>
+                                    <li><strong>Method Overloading:</strong> This is when you have multiple methods with the same name but different parameters.</li>
+                                    <li><strong>Return keyword:</strong> Used to send a value back from the method.</li>
+                                </ul>
+                            </div>
+                            <div class="content-section extra-learning-section">
+                                <h4>Extra Learning</h4>
+                                <ul>
+                                    <li><a href="https://youtu.be/wE_19p73p8I" target="_blank" rel="noopener noreferrer">YouTube: Java Methods for Beginners</a></li>
+                                    <li><a href="https://www.geeksforgeeks.org/methods-in-java/" target="_blank" rel="noopener noreferrer">Article: GeeksforGeeks Methods in Java</a></li>
+                                </ul>
+                            </div>
+                            <div class="content-section challenges">
+                                <h4>Challenges</h4>
+                                <ol>
+                                    <li><strong>Mini Challenge:</strong> Write a method that checks if a number is prime and returns `true` or `false`.</li>
+                                    <li><strong>Coding Quest:</strong> Write an overloaded `add()` method that can add either two or three numbers.</li>
+                                    <li><strong>Bonus Quest:</strong> Write a method that reverses a given string.</li>
+                                </ol>
+                            </div>
+                            <div class="content-section practice-now-section">
+                                <h4>Practice Now</h4>
+                                <p>Use an online compiler to write your code for the challenges.</p>
+                                <a href="https://www.programiz.com/java-programming/online-compiler/" target="_blank" rel="noopener noreferrer" class="compiler-link"><i class="fas fa-terminal"></i> Programiz Online Java Compiler</a>
+                            </div>
+                            <button class="complete-btn" data-module="7" data-phase="p1">Complete Level 7</button>
+                        </div>
+                    </div>
+                    <div class="module-card" data-module="8">
+                        <div class="module-header">
+                            <h4 class="module-title">Level 8: Objects 📦</h4>
+                            <span class="module-status">Locked</span>
+                        </div>
+                        <div class="module-content">
+                            <p class="goal-text">🎯 Goal for this Level: Enter the world of Object-Oriented Programming (OOP)! You'll learn to create and interact with objects, the building blocks of real-world applications.</p>
+                            <div class="content-section concept-section">
+                                <h4>Concept Summary</h4>
+                                <p>An object is a real-world entity with state and behavior. Think of a `Car` object—it has a `color` (state) and can `drive()` (behavior). You create objects from a class blueprint using the `new` keyword.</p>
+                                <h4 class="sub-heading">Key Notes</h4>
+                                <ul>
+                                    <li><strong>Creating Objects:</strong> You instantiate an object with the `new` keyword, for example, `Car myCar = new Car();`.</li>
+                                    <li><strong>Calling Methods:</strong> You use the dot operator (`.`) to call a method or access an attribute of an object, like `myCar.drive();`.</li>
+                                </ul>
+                            </div>
+                            <div class="content-section extra-learning-section">
+                                <h4>Extra Learning</h4>
+                                <ul>
+                                    <li><a href="https://youtu.be/i_G0V9s4-Ww" target="_blank" rel="noopener noreferrer">YouTube: Java Objects and Classes Tutorial</a></li>
+                                    <li><a href="https://www.javatpoint.com/java-object-and-class" target="_blank" rel="noopener noreferrer">Article: JavaTpoint Objects and Classes</a></li>
+                                </ul>
+                            </div>
+                            <div class="content-section challenges">
+                                <h4>Challenges</h4>
+                                <ol>
+                                    <li><strong>Mini Challenge:</strong> Create a `Car` object with fields for `color`, `model`, and `speed`.</li>
+                                    <li><strong>Coding Quest:</strong> Write a method called `drive()` inside your `Car` object that prints "The car is running".</li>
+                                </ol>
+                            </div>
+                            <div class="content-section practice-now-section">
+                                <h4>Practice Now</h4>
+                                <p>Use an online compiler to write your code for the challenges.</p>
+                                <a href="https://www.programiz.com/java-programming/online-compiler/" target="_blank" rel="noopener noreferrer" class="compiler-link"><i class="fas fa-terminal"></i> Programiz Online Java Compiler</a>
+                            </div>
+                            <button class="complete-btn" data-module="8" data-phase="p1">Complete Level 8</button>
+                        </div>
+                    </div>
+                    <div class="module-card" data-module="9">
+                        <div class="module-header">
+                            <h4 class="module-title">Level 9: Classes 🏛️</h4>
+                            <span class="module-status">Locked</span>
+                        </div>
+                        <div class="module-content">
+                            <p class="goal-text">🎯 Goal for this Level: Build a reusable blueprint for your objects! This is the final step in Java Basics before you dive deep into OOP concepts.</p>
+                            <div class="content-section concept-section">
+                                <h4>Concept Summary</h4>
+                                <p>A class is the blueprint from which objects are created. It defines the fields (data) and methods (behavior) that all objects of that class will have. The class is the template, and the object is the product.</p>
+                                <h4 class="sub-heading">Key Notes</h4>
+                                <ul>
+                                    <li><strong>Class Members:</strong> A class contains fields (variables) and methods.</li>
+                                    <li><strong>Constructors:</strong> Special methods used to initialize objects.</li>
+                                </ul>
+                            </div>
+                            <div class="content-section extra-learning-section">
+                                <h4>Extra Learning</h4>
+                                <ul>
+                                    <li><a href="https://youtu.be/p_c1a7VpU7s" target="_blank" rel="noopener noreferrer">YouTube: Object-Oriented Programming in Java</a></li>
+                                    <li><a href="https://www.w3schools.com/java/java_classes.asp" target="_blank" rel="noopener noreferrer">Article: W3Schools Java Classes</a></li>
+                                </ul>
+                            </div>
+                            <div class="content-section challenges">
+                                <h4>Challenges</h4>
+                                <ol>
+                                    <li><strong>Mini Challenge:</strong> Create a `Student` class with fields for `name`, `rollNo`, and `marks`.</li>
+                                    <li><strong>Coding Quest:</strong> Add a `display()` method to your `Student` class to print all the details.</li>
+                                    <li><strong>Bonus Quest:</strong> Create three `Student` objects and display their information.</li>
+                                </ol>
+                            </div>
+                            <div class="content-section practice-now-section">
+                                <h4>Practice Now</h4>
+                                <p>Use an online compiler to write your code for the challenges.</p>
+                                <a href="https://www.programiz.com/java-programming/online-compiler/" target="_blank" rel="noopener noreferrer" class="compiler-link"><i class="fas fa-terminal"></i> Programiz Online Java Compiler</a>
+                            </div>
+                            <button class="complete-btn" data-module="9" data-phase="p1">Complete Level 9</button>
+                        </div>
+                    </div>
+                    <div class="project-card locked" id="p1-project-card">
+                        <div class="project-header">
+                            <h4 class="project-title">Mini Project: Student Report Card Generator 🏆</h4>
+                        </div>
+                        <p>Apply everything you've learned from Java Basics to build a comprehensive student report card generator. This project is your final boss for Phase 1!</p>
+                        <button class="project-btn" disabled>Start Project</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="phase-section" id="phase-2">
+                <h3 class="phase-title">Phase 2: Object-Oriented Programming</h3>
+                <div class="modules-container">
+                    <div class="module-card" data-module="10">
+                        <div class="module-header">
+                            <h4 class="module-title">Level 1: Core Building Blocks 🧱</h4>
+                            <span class="module-status">Locked</span>
+                        </div>
+                        <div class="module-content">
+                            <p class="goal-text">🎯 Goal for this Level: Dive into the very heart of OOP. You'll learn to think in objects and build real-world models in code!</p>
+                            <div class="content-section concept-section">
+                                <h4>Concept Summary</h4>
+                                <p>OOP is a powerful way of organizing your code around objects rather than actions. A **class** is a blueprint, and an **object** is an actual instance created from that blueprint.</p>
+                                <h4 class="sub-heading">Key Notes</h4>
+                                <ul>
+                                    <li><strong>Classes vs. Objects:</strong> The `Pen` class is the idea of a pen; a specific blue pen you're holding is an object.</li>
+                                    <li><strong>This keyword:</strong> This special keyword refers to the current object. It helps you avoid confusion between an object's variables and a method's parameters.</li>
+                                </ul>
+                            </div>
+                            <div class="content-section extra-learning-section">
+                                <h4>Extra Learning</h4>
+                                <ul>
+                                    <li><a href="https://www.coursera.org/articles/object-oriented-programming-languages" target="_blank" rel="noopener noreferrer">Article: What is Object-Oriented Programming?</a></li>
+                                    <li><a href="https://www.datacamp.com/doc/java/classes-and-objects" target="_blank" rel="noopener noreferrer">Article: Java Classes and Objects</a></li>
+                                </ul>
+                            </div>
+                            <div class="content-section challenges">
+                                <h4>Challenges</h4>
+                                <ol>
+                                    <li><strong>Mini Challenge:</strong> Create a `Pen` class with `color` and `type` fields, plus a `write()` method.</li>
+                                    <li><strong>Coding Quest:</strong> Create multiple `Pen` objects and make them do something with the `write()` method.</li>
+                                    <li><strong>Bonus Quest:</strong> Use the `this` keyword in your `Pen` class to set a variable.</li>
+                                </ol>
+                            </div>
+                            <div class="content-section practice-now-section">
+                                <h4>Practice Now</h4>
+                                <p>Use an online compiler to write your code for the challenges.</p>
+                                <a href="https://www.programiz.com/java-programming/online-compiler/" target="_blank" rel="noopener noreferrer" class="compiler-link"><i class="fas fa-terminal"></i> Programiz Online Java Compiler</a>
+                            </div>
+                            <button class="complete-btn" data-module="10" data-phase="p2">Complete Level 1</button>
+                        </div>
+                    </div>
+                    <div class="module-card" data-module="11">
+                        <div class="module-header">
+                            <h4 class="module-title">Level 2: Constructors & Overloading 🛠️</h4>
+                            <span class="module-status">Locked</span>
+                        </div>
+                        <div class="module-content">
+                            <p class="goal-text">🎯 Goal for this Level: Learn how to create and initialize objects in different ways and master the art of having multiple methods with the same name!</p>
+                            <div class="content-section concept-section">
+                                <h4>Concept Summary</h4>
+                                <p>A **constructor** is a special method used to initialize an object. You can create multiple constructors with different parameters, a concept called **constructor overloading**. This is a form of **polymorphism** that happens at compile time!</p>
+                                <h4 class="sub-heading">Key Notes</h4>
+                                <ul>
+                                    <li><strong>Default Constructor:</strong> A constructor with no parameters.</li>
+                                    <li><strong>Parameterized Constructor:</strong> A constructor that takes arguments to set initial values.</li>
+                                    <li><strong>Method Overloading:</strong> Creating multiple methods with the same name but different parameter lists.</li>
+                                </ul>
+                            </div>
+                            <div class="content-section extra-learning-section">
+                                <h4>Extra Learning</h4>
+                                <ul>
+                                    <li><a href="https://www.javatpoint.com/java-constructor" target="_blank" rel="noopener noreferrer">Article: Java Constructors</a></li>
+                                    <li><a href="https://www.geeksforgeeks.org/constructor-overloading-in-java/" target="_blank" rel="noopener noreferrer">Article: Constructor Overloading in Java</a></li>
+                                </ul>
+                            </div>
+                            <div class="content-section challenges">
+                                <h4>Challenges</h4>
+                                <ol>
+                                    <li><strong>Mini Challenge:</strong> Create a `Student` class and use a constructor to set the `name` and `age`.</li>
+                                    <li><strong>Coding Quest:</strong> Create multiple constructors for a `Shape` class to handle different shapes like a circle and a rectangle.</li>
+                                    <li><strong>Bonus Quest:</strong> Overload a method called `add()` to add 2 numbers, and another to add 3 numbers.</li>
+                                </ol>
+                            </div>
+                            <div class="content-section practice-now-section">
+                                <h4>Practice Now</h4>
+                                <a href="https://www.programiz.com/java-programming/online-compiler/" target="_blank" rel="noopener noreferrer" class="compiler-link"><i class="fas fa-terminal"></i> Programiz Online Java Compiler</a>
+                            </div>
+                            <button class="complete-btn" data-module="11" data-phase="p2">Complete Level 2</button>
+                        </div>
+                    </div>
+                    <div class="module-card" data-module="12">
+                        <div class="module-header">
+                            <h4 class="module-title">Level 3: Encapsulation 🔒</h4>
+                            <span class="module-status">Locked</span>
+                        </div>
+                        <div class="module-content">
+                            <p class="goal-text">🎯 Goal for this Level: Learn how to protect your data and hide the internal workings of your objects. This is a crucial step in writing secure and maintainable code!</p>
+                            <div class="content-section concept-section">
+                                <h4>Concept Summary</h4>
+                                <p>Encapsulation is the process of bundling data (variables) and the methods that operate on that data into a single unit (a class). By making variables `private`, you can control how they are accessed using `public` methods (getters and setters).</p>
+                                <h4 class="sub-heading">Key Notes</h4>
+                                <ul>
+                                    <li><strong>Data Hiding:</strong> Use the `private` access modifier to prevent direct access to sensitive data.</li>
+                                    <li><strong>Getters and Setters:</strong> These public methods are the "gatekeepers" that let you retrieve (`get`) and modify (`set`) private variables, allowing you to add validation logic.</li>
+                                </ul>
+                            </div>
+                            <div class="content-section extra-learning-section">
+                                <h4>Extra Learning</h4>
+                                <ul>
+                                    <li><a href="https://www.geeksforgeeks.org/encapsulation-in-java/" target="_blank" rel="noopener noreferrer">Article: Encapsulation in Java</a></li>
+                                    <li><a href="https://www.javatpoint.com/encapsulation-in-java" target="_blank" rel="noopener noreferrer">Article: JavaTpoint Encapsulation</a></li>
+                                </ul>
+                            </div>
+                            <div class="content-section challenges">
+                                <h4>Challenges</h4>
+                                <ol>
+                                    <li><strong>Mini Challenge:</strong> Create a `BankAccount` class with a `private` `balance` variable.</li>
+                                    <li><strong>Coding Quest:</strong> Add public `deposit()` and `withdraw()` methods with validation (e.g., don't allow a withdrawal if the balance is too low!).</li>
+                                    <li><strong>Bonus Quest:</strong> Prove that direct access to the `balance` is no longer possible by trying to access it in your main method and seeing the error.</li>
+                                </ol>
+                            </div>
+                            <div class="content-section practice-now-section">
+                                <h4>Practice Now</h4>
+                                <p>Use an online compiler to write your code for the challenges.</p>
+                                <a href="https://www.programiz.com/java-programming/online-compiler/" target="_blank" rel="noopener noreferrer" class="compiler-link"><i class="fas fa-terminal"></i> Programiz Online Java Compiler</a>
+                            </div>
+                            <button class="complete-btn" data-module="12" data-phase="p2">Complete Level 3</button>
+                        </div>
+                    </div>
+                    <div class="module-card" data-module="13">
+                        <div class="module-header">
+                            <h4 class="module-title">Level 4: Inheritance 🌳</h4>
+                            <span class="module-status">Locked</span>
+                        </div>
+                        <div class="module-content">
+                            <p class="goal-text">🎯 Goal for this Level: Learn to create a "family" of classes where a child class inherits all the cool features from its parent. This is a huge win for code reusability!</p>
+                            <div class="content-section concept-section">
+                                <h4>Concept Summary</h4>
+                                <p>Inheritance allows a class (the child) to inherit the fields and methods of another class (the parent). This promotes code reuse and models a real-world "is-a" relationship, like a `Dog` is an `Animal`.</p>
+                                <h4 class="sub-heading">Key Notes</h4>
+                                <ul>
+                                    <li><strong>Extends keyword:</strong> Used to create a child class from a parent class.</li>
+                                    <li><strong>Super keyword:</strong> Used to refer to the parent class's members.</li>
+                                    <li><strong>Method Overriding:</strong> A child class can provide a specific implementation for a method that is already defined in its parent class.</li>
+                                </ul>
+                            </div>
+                            <div class="content-section extra-learning-section">
+                                <h4>Extra Learning</h4>
+                                <ul>
+                                    <li><a href="https://www.geeksforgeeks.org/inheritance-in-java/" target="_blank" rel="noopener noreferrer">Article: Inheritance in Java</a></li>
+                                    <li><a href="https://www.javatpoint.com/inheritance-in-java" target="_blank" rel="noopener noreferrer">Article: JavaTpoint Inheritance</a></li>
+                                </ul>
+                            </div>
+                            <div class="content-section challenges">
+                                <h4>Challenges</h4>
+                                <ol>
+                                    <li><strong>Mini Challenge:</strong> Create an `Animal` class, then a `Dog` class that `extends` `Animal`, and a `Puppy` class that `extends` `Dog`.</li>
+                                    <li><strong>Coding Quest:</strong> Override the `speak()` method in the `Animal` class with a specific sound for the `Dog` class.</li>
+                                    <li><strong>Bonus Quest:</strong> Create a `Shape` class, and then `Circle` and `Rectangle` classes that inherit from it.</li>
+                                </ol>
+                            </div>
+                            <div class="content-section practice-now-section">
+                                <h4>Practice Now</h4>
+                                <p>Use an online compiler to write your code for the challenges.</p>
+                                <a href="https://www.programiz.com/java-programming/online-compiler/" target="_blank" rel="noopener noreferrer" class="compiler-link"><i class="fas fa-terminal"></i> Programiz Online Java Compiler</a>
+                            </div>
+                            <button class="complete-btn" data-module="13" data-phase="p2">Complete Level 4</button>
+                        </div>
+                    </div>
+                    <div class="module-card" data-module="14">
+                        <div class="module-header">
+                            <h4 class="module-title">Level 5: Polymorphism 💫</h4>
+                            <span class="module-status">Locked</span>
+                        </div>
+                        <div class="module-content">
+                            <p class="goal-text">🎯 Goal for this Level: Discover how a single object can take on many forms. This is the magic of OOP that makes your code flexible and powerful!</p>
+                            <div class="content-section concept-section">
+                                <h4>Concept Summary</h4>
+                                <p>Polymorphism means "many forms." It allows objects of different classes to be treated as objects of a common superclass. This means you can write code that works with a generic parent class and have it dynamically behave differently based on the specific child class.</p>
+                                <h4 class="sub-heading">Key Notes</h4>
+                                <ul>
+                                    <li><strong>Compile-time Polymorphism (Overloading):</strong> The compiler decides which method to call based on the method's parameters.</li>
+                                    <li><strong>Runtime Polymorphism (Overriding):</strong> The Java Virtual Machine (JVM) decides which method to call during runtime based on the object's actual type.</li>
+                                </ul>
+                            </div>
+                            <div class="content-section extra-learning-section">
+                                <h4>Extra Learning</h4>
+                                <ul>
+                                    <li><a href="https://www.geeksforgeeks.org/polymorphism-in-java/" target="_blank" rel="noopener noreferrer">Article: Polymorphism in Java</a></li>
+                                    <li><a href="https://www.javatpoint.com/polymorphism-in-java" target="_blank" rel="noopener noreferrer">Article: JavaTpoint Polymorphism</a></li>
+                                </ul>
+                            </div>
+                            <div class="content-section challenges">
+                                <h4>Challenges</h4>
+                                <ol>
+                                    <li><strong>Mini Challenge:</strong> Overload the `add()` method in a `Calculator` class to work with different numbers of arguments.</li>
+                                    <li><strong>Coding Quest:</strong> Use your `Animal` and `Dog` classes to demonstrate method overriding with a `sound()` method.</li>
+                                    <li><strong>Bonus Quest:</strong> Create a variable like `Animal myAnimal = new Dog();` and call the `sound()` method to see runtime polymorphism in action.</li>
+                                </ol>
+                            </div>
+                            <div class="content-section practice-now-section">
+                                <h4>Practice Now</h4>
+                                <p>Use an online compiler to write your code for the challenges.</p>
+                                <a href="https://www.programiz.com/java-programming/online-compiler/" target="_blank" rel="noopener noreferrer" class="compiler-link"><i class="fas fa-terminal"></i> Programiz Online Java Compiler</a>
+                            </div>
+                            <button class="complete-btn" data-module="14" data-phase="p2">Complete Level 5</button>
+                        </div>
+                    </div>
+                    <div class="module-card" data-module="15">
+                        <div class="module-header">
+                            <h4 class="module-title">Level 6: Abstraction 👻</h4>
+                            <span class="module-status">Locked</span>
+                        </div>
+                        <div class="module-content">
+                            <p class="goal-text">🎯 Goal for this Level: Learn to focus on what an object **does** instead of how it does it. You'll master abstract classes and interfaces, a huge part of professional Java development!</p>
+                            <div class="content-section concept-section">
+                                <h4>Concept Summary</h4>
+                                <p>Abstraction is about hiding complex implementation details and showing only the essential features of an object. This is achieved using **abstract classes** (which can have both defined and undefined methods) and **interfaces** (which define a contract of methods that a class must implement).</p>
+                                <h4 class="sub-heading">Key Notes</h4>
+                                <ul>
+                                    <li><strong>Abstract keyword:</strong> Used for classes and methods that are incomplete and must be implemented by a child class.</li>
+                                    <li><strong>Interface keyword:</strong> A contract that specifies what a class should do, but not how. A class can implement multiple interfaces.</li>
+                                </ul>
+                            </div>
+                            <div class="content-section extra-learning-section">
+                                <h4>Extra Learning</h4>
+                                <ul>
+                                    <li><a href="https://www.javatpoint.com/abstraction-in-java" target="_blank" rel="noopener noreferrer">Article: Abstraction in Java</a></li>
+                                    <li><a href="https://www.geeksforgeeks.org/interfaces-in-java/" target="_blank" rel="noopener noreferrer">Article: Interfaces in Java</a></li>
+                                </ul>
+                            </div>
+                            <div class="content-section challenges">
+                                <h4>Challenges</h4>
+                                <ol>
+                                    <li><strong>Mini Challenge:</strong> Create an `abstract class Vehicle` with an `abstract` method called `drive()`.</li>
+                                    <li><strong>Coding Quest:</strong> Create an `interface Payment` and then implement it in a `CreditCard` and a `UPI` class.</li>
+                                    <li><strong>Bonus Quest:</strong> Show how interfaces enable a form of multiple inheritance in Java.</li>
+                                </ol>
+                            </div>
+                            <div class="content-section practice-now-section">
+                                <h4>Practice Now</h4>
+                                <p>Use an online compiler to write your code for the challenges.</p>
+                                <a href="https://www.programiz.com/java-programming/online-compiler/" target="_blank" rel="noopener noreferrer" class="compiler-link"><i class="fas fa-terminal"></i> Programiz Online Java Compiler</a>
+                            </div>
+                            <button class="complete-btn" data-module="15" data-phase="p2">Complete Level 6</button>
+                        </div>
+                    </div>
+                    <div class="module-card" data-module="16">
+                        <div class="module-header">
+                            <h4 class="module-title">Level 7: Advanced OOP ⚙️</h4>
+                            <span class="module-status">Locked</span>
+                        </div>
+                        <div class="module-content">
+                            <p class="goal-text">🎯 Goal for this Level: Take your OOP skills to the next level by mastering advanced concepts like static members, final classes, and the power of the `Object` class!</p>
+                            <div class="content-section concept-section">
+                                <h4>Concept Summary</h4>
+                                <p>This level covers key keywords like `static` (for class-level members), `final` (for making things constant or unchangeable), and delves into the powerful `Object` class, the parent of all Java classes. You'll learn to write highly optimized and structured code.</p>
+                                <h4 class="sub-heading">Key Notes</h4>
+                                <ul>
+                                    <li><strong>Static keyword:</strong> Makes variables and methods belong to the class, not to an individual object.</li>
+                                    <li><strong>Final keyword:</strong> Prevents a variable from being reassigned, a method from being overridden, or a class from being inherited.</li>
+                                    <li><strong>Object class:</strong> The ultimate parent class. Its methods, like `equals()` and `toString()`, are available to all objects.</li>
+                                </ul>
+                            </div>
+                            <div class="content-section extra-learning-section">
+                                <h4>Extra Learning</h4>
+                                <ul>
+                                    <li><a href="https://www.geeksforgeeks.org/static-keyword-in-java/" target="_blank" rel="noopener noreferrer">Article: Static Keyword in Java</a></li>
+                                    <li><a href="https://www.javatpoint.com/final-keyword" target="_blank" rel="noopener noreferrer">Article: Final Keyword in Java</a></li>
+                                </ul>
+                            </div>
+                            <div class="content-section challenges">
+                                <h4>Challenges</h4>
+                                <ol>
+                                    <li><strong>Mini Challenge:</strong> Create a `MathUtil` class with a `static` method called `add()`.</li>
+                                    <li><strong>Coding Quest:</strong> Override the `toString()` method in a `Student` class to provide a custom string representation.</li>
+                                    <li><strong>Bonus Quest:</strong> Create a `final` class with a `final` variable to demonstrate immutability.</li>
+                                </ol>
+                            </div>
+                            <div class="content-section practice-now-section">
+                                <h4>Practice Now</h4>
+                                <p>Use an online compiler to write your code for the challenges.</p>
+                                <a href="https://www.programiz.com/java-programming/online-compiler/" target="_blank" rel="noopener noreferrer" class="compiler-link"><i class="fas fa-terminal"></i> Programiz Online Java Compiler</a>
+                            </div>
+                            <button class="complete-btn" data-module="16" data-phase="p2">Complete Level 7</button>
+                        </div>
+                    </div>
+                    <div class="project-card locked" id="p2-project-card">
+                        <div class="project-header">
+                            <h4 class="project-title">Mini Project: Banking System Simulation 🏆</h4>
+                        </div>
+                        <p>Apply your OOP knowledge to build a **Banking System**. This project will test your skills in encapsulation, inheritance, and polymorphism in a real-world scenario!</p>
+                        <button class="project-btn" disabled>Start Project</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="phase-section" id="phase-3">
+                <h3 class="phase-title">Phase 3: Data Structures & Algorithms</h3>
+                <div class="modules-container">
+                    <div class="module-card" data-module="17">
+                        <div class="module-header">
+                            <h4 class="module-title">Level 1: Arrays & Strings 📚</h4>
+                            <span class="module-status">Locked</span>
+                        </div>
+                        <div class="module-content">
+                            <p class="goal-text">🎯 Goal for this Level: Start your DSA journey with the most fundamental building blocks! You'll master arrays and strings, the bedrock of problem-solving.</p>
+                            <div class="content-section concept-section">
+                                <h4>Concept Summary</h4>
+                                <p>Arrays and Strings are the simplest data structures. An **array** is a collection of elements of the same type, while a **string** is an immutable sequence of characters. Mastering these is key for almost all programming problems.</p>
+                                <h4 class="sub-heading">Key Notes</h4>
+                                <ul>
+                                    <li><strong>Arrays:</strong> Fast access by index, but fixed size.</li>
+                                    <li><strong>Strings:</strong> In Java, they are immutable. This means they can't be changed once created.</li>
+                                    <li><strong>Algorithms:</strong> Learn fundamental algorithms like searching, sorting, and reversing.</li>
+                                </ul>
+                            </div>
+                            <div class="content-section extra-learning-section">
+                                <h4>Extra Learning</h4>
+                                <ul>
+                                    <li><a href="https://leetcode.com/tag/array/" target="_blank" rel="noopener noreferrer"><i class="fas fa-link"></i> LeetCode Arrays (Easy)</a></li>
+                                    <li><a href="https://www.geeksforgeeks.org/data-structures-and-algorithms/" target="_blank" rel="noopener noreferrer"><i class="fas fa-link"></i> GFG Arrays Practice</a></li>
+                                </ul>
+                            </div>
+                            <div class="content-section challenges">
+                                <h4>Challenges</h4>
+                                <ol>
+                                    <li><strong>Mini Challenge:</strong> Reverse an array in place without using any extra data structures.</li>
+                                    <li><strong>Coding Quest:</strong> Check if a string is a palindrome.</li>
+                                    <li><strong>Bonus Quest:</strong> Merge two sorted arrays into a single, sorted array.</li>
+                                </ol>
+                            </div>
+                            <div class="content-section practice-now-section">
+                                <h4>Practice Now</h4>
+                                <p>Use LeetCode and GFG to practice real interview questions.</p>
+                                <a href="https://www.programiz.com/java-programming/online-compiler/" target="_blank" rel="noopener noreferrer" class="compiler-link"><i class="fas fa-terminal"></i> Programiz Online Java Compiler</a>
+                            </div>
+                            <button class="complete-btn" data-module="17" data-phase="p3">Complete Level 1</button>
+                        </div>
+                    </div>
+                    <div class="module-card" data-module="18">
+                        <div class="module-header">
+                            <h4 class="module-title">Level 2: Recursion & Backtracking 🔄</h4>
+                            <span class="module-status">Locked</span>
+                        </div>
+                        <div class="module-content">
+                            <p class="goal-text">🎯 Goal for this Level: Learn to solve complex problems by breaking them down into smaller, similar sub-problems. This is a must-have skill for competitive programming!</p>
+                            <div class="content-section concept-section">
+                                <h4>Concept Summary</h4>
+                                <p>Recursion is a powerful technique where a function calls itself. It's often used to solve problems that can be broken down into a base case and a recursive step. Backtracking is a more advanced form of recursion used to find all possible solutions to a problem by systematically trying each option and undoing choices that don't lead to a valid solution.</p>
+                                <h4 class="sub-heading">Key Notes</h4>
+                                <ul>
+                                    <li><strong>Base Case:</strong> The condition that stops the recursion. Without it, you'll get an infinite loop!</li>
+                                    <li><strong>Backtracking:</strong> Think of it like navigating a maze. When you hit a dead end, you go back to the last crossroads and try a different path.</li>
+                                </ul>
+                            </div>
+                            <div class="content-section extra-learning-section">
+                                <h4>Extra Learning</h4>
+                                <ul>
+                                    <li><a href="https://leetcode.com/tag/recursion/" target="_blank" rel="noopener noreferrer"><i class="fas fa-link"></i> LeetCode Recursion Problems</a></li>
+                                    <li><a href="https://www.geeksforgeeks.org/recursion/" target="_blank" rel="noopener noreferrer"><i class="fas fa-link"></i> GFG Recursion Practice</a></li>
+                                </ul>
+                            </div>
+                            <div class="content-section challenges">
+                                <h4>Challenges</h4>
+                                <ol>
+                                    <li><strong>Mini Challenge:</strong> Write a recursive function to calculate the factorial of a number.</li>
+                                    <li><strong>Coding Quest:</strong> Generate all permutations of a string.</li>
+                                    <li><strong>Bonus Quest:</strong> Solve the classic Tower of Hanoi problem using recursion.</li>
+                                </ol>
+                            </div>
+                            <div class="content-section practice-now-section">
+                                <h4>Practice Now</h4>
+                                <p>Use an online compiler to write your code for the challenges.</p>
+                                <a href="https://www.programiz.com/java-programming/online-compiler/" target="_blank" rel="noopener noreferrer" class="compiler-link"><i class="fas fa-terminal"></i> Programiz Online Java Compiler</a>
+                            </div>
+                            <button class="complete-btn" data-module="18" data-phase="p3">Complete Level 2</button>
+                        </div>
+                    </div>
+                    <div class="module-card" data-module="19">
+                        <div class="module-header">
+                            <h4 class="module-title">Level 3: Linked Lists 🔗</h4>
+                            <span class="module-status">Locked</span>
+                        </div>
+                        <div class="module-content">
+                            <p class="goal-text">🎯 Goal for this Level: Move beyond fixed-size arrays and learn about dynamic data storage with Linked Lists. You'll solve problems that are a must-know for interviews!</p>
+                            <div class="content-section concept-section">
+                                <h4>Concept Summary</h4>
+                                <p>A **Linked List** is a linear data structure where elements are not stored in contiguous memory locations. Each element (node) contains its own data and a pointer to the next node. This makes them highly flexible for insertion and deletion.</p>
+                                <h4 class="sub-heading">Key Notes</h4>
+                                <ul>
+                                    <li><strong>Nodes:</strong> Each node has two parts: data and a reference to the next node.</li>
+                                    <li><strong>Pointers:</strong> Instead of using indexes, you traverse a linked list by following the pointers from one node to the next.</li>
+                                </ul>
+                            </div>
+                            <div class="content-section extra-learning-section">
+                                <h4>Extra Learning</h4>
+                                <ul>
+                                    <li><a href="https://leetcode.com/tag/linked-list/" target="_blank" rel="noopener noreferrer"><i class="fas fa-link"></i> LeetCode Linked List Problems</a></li>
+                                    <li><a href="https://www.geeksforgeeks.org/linked-list-data-structure/" target="_blank" rel="noopener noreferrer"><i class="fas fa-link"></i> GFG Linked List Practice</a></li>
+                                </ul>
+                            </div>
+                            <div class="content-section challenges">
+                                <h4>Challenges</h4>
+                                <ol>
+                                    <li><strong>Mini Challenge:</strong> Find the middle node of a linked list.</li>
+                                    <li><strong>Coding Quest:</strong> Reverse a linked list (both iteratively and recursively).</li>
+                                    <li><strong>Bonus Quest:</strong> Detect if a linked list has a cycle (and find where it starts!).</li>
+                                </ol>
+                            </div>
+                            <div class="content-section practice-now-section">
+                                <h4>Practice Now</h4>
+                                <p>Use an online compiler to write your code for the challenges.</p>
+                                <a href="https://www.programiz.com/java-programming/online-compiler/" target="_blank" rel="noopener noreferrer" class="compiler-link"><i class="fas fa-terminal"></i> Programiz Online Java Compiler</a>
+                            </div>
+                            <button class="complete-btn" data-module="19" data-phase="p3">Complete Level 3</button>
+                        </div>
+                    </div>
+                    <div class="module-card" data-module="20">
+                        <div class="module-header">
+                            <h4 class="module-title">Level 4: Stacks & Queues 📦</h4>
+                            <span class="module-status">Locked</span>
+                        </div>
+                        <div class="module-content">
+                            <p class="goal-text">🎯 Goal for this Level: Master these two essential linear data structures. You'll learn how to use them to solve problems like checking for balanced parentheses and processing data in a specific order!</p>
+                            <div class="content-section concept-section">
+                                <h4>Concept Summary</h4>
+                                <p>Stacks and Queues are powerful data structures that enforce a strict order for adding and removing elements. Stacks follow a LIFO (Last-In, First-Out) principle, while queues follow a FIFO (First-In, First-Out) principle.</p>
+                                <h4 class="sub-heading">Key Notes</h4>
+                                <ul>
+                                    <li><strong>Stack Operations:</strong> The main operations are `push` (add) and `pop` (remove). Think of a stack of plates.</li>
+                                    <li><strong>Queue Operations:</strong> The main operations are `enqueue` (add) and `dequeue` (remove). Think of a line at a movie theater.</li>
+                                </ul>
+                            </div>
+                            <div class="content-section extra-learning-section">
+                                <h4>Extra Learning</h4>
+                                <ul>
+                                    <li><a href="https://leetcode.com/tag/stack/" target="_blank" rel="noopener noreferrer"><i class="fas fa-link"></i> LeetCode Stack Problems</a></li>
+                                    <li><a href="https://leetcode.com/tag/queue/" target="_blank" rel="noopener noreferrer"><i class="fas fa-link"></i> LeetCode Queue Problems</a></li>
+                                </ul>
+                            </div>
+                            <div class="content-section challenges">
+                                <h4>Challenges</h4>
+                                <ol>
+                                    <li><strong>Mini Challenge:</strong> Implement a stack using an array.</li>
+                                    <li><strong>Coding Quest:</strong> Write a program to check if a string of parentheses `()[]{}` is balanced.</li>
+                                    <li><strong>Bonus Quest:</strong> Implement a queue using two stacks!</li>
+                                </ol>
+                            </div>
+                            <div class="content-section practice-now-section">
+                                <h4>Practice Now</h4>
+                                <p>Use an online compiler to write your code for the challenges.</p>
+                                <a href="https://www.programiz.com/java-programming/online-compiler/" target="_blank" rel="noopener noreferrer" class="compiler-link"><i class="fas fa-terminal"></i> Programiz Online Java Compiler</a>
+                            </div>
+                            <button class="complete-btn" data-module="20" data-phase="p3">Complete Level 4</button>
+                        </div>
+                    </div>
+                    <div class="module-card" data-module="21">
+                        <div class="module-header">
+                            <h4 class="module-title">Level 5: Trees 🌲</h4>
+                            <span class="module-status">Locked</span>
+                        </div>
+                        <div class="module-content">
+                            <p class="goal-text">🎯 Goal for this Level: Learn about non-linear data structures! Trees are essential for organizing hierarchical data and are the backbone of many complex algorithms.</p>
+                            <div class="content-section concept-section">
+                                <h4>Concept Summary</h4>
+                                <p>A **Tree** is a non-linear data structure that simulates a hierarchical relationship. A **Binary Tree** is a tree where each node has at most two children. A special type, the **Binary Search Tree (BST)**, keeps data sorted, making search operations extremely fast.</p>
+                                <h4 class="sub-heading">Key Notes</h4>
+                                <ul>
+                                    <li><strong>Nodes:</strong> The basic building blocks of a tree. They contain data and references to their children.</li>
+                                    <li><strong>Root:</strong> The top-most node of a tree.</li>
+                                    <li><strong>Leaves:</strong> Nodes with no children.</li>
+                                </ul>
+                            </div>
+                            <div class="content-section extra-learning-section">
+                                <h4>Extra Learning</h4>
+                                <ul>
+                                    <li><a href="https://leetcode.com/tag/tree/" target="_blank" rel="noopener noreferrer"><i class="fas fa-link"></i> LeetCode Binary Tree Problems</a></li>
+                                    <li><a href="https://leetcode.com/tag/binary-search-tree/" target="_blank" rel="noopener noreferrer"><i class="fas fa-link"></i> LeetCode BST Problems</a></li>
+                                </ul>
+                            </div>
+                            <div class="content-section challenges">
+                                <h4>Challenges</h4>
+                                <ol>
+                                    <li><strong>Mini Challenge:</strong> Implement a function to find the height of a binary tree.</li>
+                                    <li><strong>Coding Quest:</strong> Write a function to check if a tree is a valid Binary Search Tree.</li>
+                                    <li><strong>Bonus Quest:</strong> Implement all three tree traversal algorithms (Inorder, Preorder, Postorder).</li>
+                                </ol>
+                            </div>
+                            <div class="content-section practice-now-section">
+                                <h4>Practice Now</h4>
+                                <p>Use an online compiler to write your code for the challenges.</p>
+                                <a href="https://www.programiz.com/java-programming/online-compiler/" target="_blank" rel="noopener noreferrer" class="compiler-link"><i class="fas fa-terminal"></i> Programiz Online Java Compiler</a>
+                            </div>
+                            <button class="complete-btn" data-module="21" data-phase="p3">Complete Level 5</button>
+                        </div>
+                    </div>
+                    <div class="module-card" data-module="22">
+                        <div class="module-header">
+                            <h4 class="module-title">Level 6: Graphs 🕸️</h4>
+                            <span class="module-status">Locked</span>
+                        </div>
+                        <div class="module-content">
+                            <p class="goal-text">🎯 Goal for this Level: Conquer the most versatile data structure! Graphs are everywhere, from social networks to navigation systems. You'll learn how to traverse them to solve real-world problems!</p>
+                            <div class="content-section concept-section">
+                                <h4>Concept Summary</h4>
+                                <p>A **Graph** is a non-linear data structure consisting of a set of **vertices** (nodes) and **edges** that connect them. They are a powerful way to model relationships between data points. You can represent them using an Adjacency List or an Adjacency Matrix.</p>
+                                <h4 class="sub-heading">Key Notes</h4>
+                                <ul>
+                                    <li><strong>BFS (Breadth-First Search):</strong> Traverses the graph level by level. Best for finding the shortest path in an unweighted graph.</li>
+                                    <li><strong>DFS (Depth-First Search):</strong> Traverses the graph by going as deep as possible along each branch before backtracking. Best for detecting cycles.</li>
+                                </ul>
+                            </div>
+                            <div class="content-section extra-learning-section">
+                                <h4>Extra Learning</h4>
+                                <ul>
+                                    <li><a href="https://leetcode.com/tag/graph/" target="_blank" rel="noopener noreferrer"><i class="fas fa-link"></i> LeetCode Graph Problems</a></li>
+                                    <li><a href="https://www.geeksforgeeks.org/graph-data-structure-and-algorithms/" target="_blank" rel="noopener noreferrer"><i class="fas fa-link"></i> GFG Graph Practice</a></li>
+                                </ul>
+                            </div>
+                            <div class="content-section challenges">
+                                <h4>Challenges</h4>
+                                <ol>
+                                    <li><strong>Mini Challenge:</strong> Implement both BFS and DFS traversal algorithms for a given graph.</li>
+                                    <li><strong>Coding Quest:</strong> Write a function to detect if a cycle exists in a graph.</li>
+                                    <li><strong>Bonus Quest:</strong> Find the shortest path between two nodes in an unweighted graph using BFS.</li>
+                                </ol>
+                            </div>
+                            <div class="content-section practice-now-section">
+                                <h4>Practice Now</h4>
+                                <p>Use an online compiler to write your code for the challenges.</p>
+                                <a href="https://www.programiz.com/java-programming/online-compiler/" target="_blank" rel="noopener noreferrer" class="compiler-link"><i class="fas fa-terminal"></i> Programiz Online Java Compiler</a>
+                            </div>
+                            <button class="complete-btn" data-module="22" data-phase="p3">Complete Level 6</button>
+                        </div>
+                    </div>
+                    <div class="module-card" data-module="23">
+                        <div class="module-header">
+                            <h4 class="module-title">Level 7: Advanced DSA 🧠</h4>
+                            <span class="module-status">Locked</span>
+                        </div>
+                        <div class="module-content">
+                            <p class="goal-text">🎯 Goal for this Level: Conquer advanced data structures and algorithms that are crucial for high-level problem-solving and competitive programming!</p>
+                            <div class="content-section concept-section">
+                                <h4>Concept Summary</h4>
+                                <p>This level covers a mix of advanced data structures and algorithms that are fundamental for high-performance computing. You'll master **Heaps** for priority-based data, **Tries** for efficient string searching, and **Dynamic Programming** for solving complex optimization problems.</p>
+                                <h4 class="sub-heading">Key Notes</h4>
+                                <ul>
+                                    <li><strong>Heaps:</strong> A special kind of tree used to efficiently find the minimum or maximum element.</li>
+                                    <li><strong>Dynamic Programming (DP):</strong> A method for solving problems by breaking them down into simpler overlapping subproblems and storing the results.</li>
+                                    <li><strong>Tries:</strong> A tree-like data structure used for efficient retrieval of a key in a dataset of strings.</li>
+                                </ul>
+                            </div>
+                            <div class="content-section extra-learning-section">
+                                <h4>Extra Learning</h4>
+                                <ul>
+                                    <li><a href="https://leetcode.com/tag/heap/" target="_blank" rel="noopener noreferrer"><i class="fas fa-link"></i> LeetCode Heaps & DP Problems</a></li>
+                                    <li><a href="https://www.geeksforgeeks.org/dynamic-programming/" target="_blank" rel="noopener noreferrer"><i class="fas fa-link"></i> GFG DP Practice</a></li>
+                                </ul>
+                            </div>
+                            <div class="content-section challenges">
+                                <h4>Challenges</h4>
+                                <ol>
+                                    <li><strong>Mini Challenge:</strong> Implement a Min/Max Heap.</li>
+                                    <li><strong>Coding Quest:</strong> Find the K largest elements in an array using a Heap.</li>
+                                    <li><strong>Bonus Quest:</strong> Solve a classic DP problem like the 0/1 Knapsack problem.</li>
+                                </ol>
+                            </div>
+                            <div class="content-section practice-now-section">
+                                <h4>Practice Now</h4>
+                                <p>Use an online compiler to write your code for the challenges.</p>
+                                <a href="https://www.programiz.com/java-programming/online-compiler/" target="_blank" rel="noopener noreferrer" class="compiler-link"><i class="fas fa-terminal"></i> Programiz Online Java Compiler</a>
+                            </div>
+                            <button class="complete-btn" data-module="23" data-phase="p3">Complete Level 7</button>
+                        </div>
+                    </div>
+                    <div class="project-card locked" id="p3-project-card">
+                        <div class="project-header">
+                            <h4 class="project-title">Final Capstone Projects: Autocomplete Search System 🚀</h4>
+                        </div>
+                        <p>Put all your DSA knowledge to the test by building an **Autocomplete Search System**. This project is the ultimate test of your skills in **Tries** and **Hashing**.</p>
+                        <button class="project-btn" disabled>Start Project</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about-us" class="about-us-section">
+            <div class="about-content">
+                <h2 class="section-title">About This Platform</h2>
+                <p>Welcome to your comprehensive Java and DSA learning hub. This platform is designed to take you from a complete beginner to a confident programmer, ready for technical interviews. Our curriculum is structured into three progressive phases: Foundations, Object-Oriented Programming, and Data Structures & Algorithms. Each level is built to guide you with clear explanations, practical exercises, and external resources for deeper learning. Our gamified approach helps you track your progress and stay motivated on your coding journey.</p>
+            </div>
+        </section>
+
+        <section id="contact" class="contact-section">
+            <h2 class="section-title">Get in Touch</h2>
+            <div class="contact-content">
+                <p>If you have any questions, feedback, or need help with a problem, feel free to reach out. We are here to support your learning journey.</p>
+                <div class="contact-links">
+                    <a href="mailto:contact@javaquest.com"><i class="fas fa-envelope"></i> Email Us</a>
+                    <a href="#"><i class="fab fa-twitter"></i> Follow on Twitter</a>
+                    <a href="#"><i class="fab fa-linkedin"></i> Connect on LinkedIn</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2025 Java Quest. All rights reserved.</p>
+    </footer>
+
+    <div class="modal auth-modal" id="authModal">
+        <div class="modal-content auth-content">
+            <span class="close-btn auth-close-btn">&times;</span>
+            <h2 class="modal-title" id="auth-modal-title">Log In</h2>
+            <form id="auth-form" class="auth-form" novalidate>
+                <div class="form-group">
+                    <label for="auth-username">Username</label>
+                    <input type="text" id="auth-username" required>
+                </div>
+                <div class="form-group">
+                    <label for="auth-password">Password</label>
+                    <input type="password" id="auth-password" required>
+                </div>
+                <p id="auth-error-msg" class="error-message"></p>
+                <button type="submit" id="auth-submit-btn" class="btn auth-submit-btn">Log In</button>
+                <a href="#" id="toggle-auth" class="toggle-link">Don’t have an account? Sign Up</a>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal" id="completionModal">
+        <div class="modal-content">
+            <span class="close-btn completion-close-btn">&times;</span>
+            <div class="celebration-animation"></div>
+            <h2 id="completion-modal-title"></h2>
+            <p id="completion-modal-text"></p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
