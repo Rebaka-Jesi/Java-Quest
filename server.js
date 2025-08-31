@@ -1,3 +1,6 @@
+// This entire script should be in a file like 'app.js' or 'client.js'
+// and included in your HTML: <script src="app.js" defer></script>
+
 document.addEventListener('DOMContentLoaded', () => {
     // --- DOM ELEMENT SELECTIONS ---
     const dom = {
@@ -48,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return data;
         } catch (error) {
             console.error(`API Error on ${endpoint}:`, error);
-            throw error; // Re-throw to be caught by the caller
+            throw error;
         }
     };
 
@@ -65,7 +68,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 body: JSON.stringify({ progress })
             });
         } catch (error) {
-            // Handle save failure, perhaps with a small UI indicator
             console.error("Failed to save progress to server.");
         }
     };
@@ -83,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
             progress = data.progress || { completedModules: 0, phaseProgress: {} };
         } catch (error) {
             console.error('Failed to load progress, logging out:', error);
-            handleLogout(); // If token is invalid, log the user out.
+            handleLogout();
         } finally {
             applyProgressUI();
         }
@@ -105,7 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const isCompleted = progress.phaseProgress[`module_${moduleId}`];
 
             card.classList.toggle('completed', isCompleted);
-            card.classList.remove('active', 'locked'); // Reset state
+            card.classList.remove('active', 'locked');
             
             const statusEl = card.querySelector('.module-status');
             const btnEl = card.querySelector('.complete-btn');
@@ -128,13 +130,12 @@ document.addEventListener('DOMContentLoaded', () => {
             if (btnEl) btnEl.disabled = false;
         }
 
-        // Lock all subsequent modules
         document.querySelectorAll('.module-card').forEach(card => {
             const moduleId = parseInt(card.dataset.module, 10);
             if (moduleId > nextModuleId) {
                 card.classList.add('locked');
                 const statusEl = card.querySelector('.module-status');
-                 const btnEl = card.querySelector('.complete-btn');
+                const btnEl = card.querySelector('.complete-btn');
                 if (statusEl) statusEl.textContent = 'Locked';
                 if (btnEl) btnEl.disabled = true;
             }
@@ -147,6 +148,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const username = localStorage.getItem('username');
         const loggedIn = !!username;
 
+        // CORRECTED: Added checks to prevent errors if elements don't exist
         if (dom.loginBtn) dom.loginBtn.style.display = loggedIn ? 'none' : 'flex';
         if (dom.signupBtn) dom.signupBtn.style.display = loggedIn ? 'none' : 'flex';
         if (dom.profileMenu) dom.profileMenu.style.display = loggedIn ? 'flex' : 'none';
@@ -197,7 +199,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 hideModal(dom.authModal);
                 await loadProgress();
             } else {
-                // On successful signup, switch to login view
                 setupAuthModal(true);
             }
         } catch (error) {
@@ -213,14 +214,18 @@ document.addEventListener('DOMContentLoaded', () => {
         applyProgressUI();
     };
 
-    const handleCompleteModule = async (moduleId) => {
+    const handleCompleteModule = async (moduleIdStr) => {
         if (!localStorage.getItem('userToken')) {
             showModal(dom.authModal);
             return;
         }
         
+        // CORRECTED: Ensure moduleId is a number
+        const moduleId = parseInt(moduleIdStr, 10);
+        if (isNaN(moduleId)) return; // Exit if moduleId is not a valid number
+
         progress.phaseProgress[`module_${moduleId}`] = true;
-        applyProgressUI(); // Update UI immediately for responsiveness
+        applyProgressUI();
         
         if (dom.completionModalTitle) dom.completionModalTitle.textContent = `Level ${moduleId} Complete!`;
         if (dom.completionModalText) dom.completionModalText.textContent = "Great job! On to the next challenge.";
@@ -229,23 +234,23 @@ document.addEventListener('DOMContentLoaded', () => {
         await saveProgress();
     };
 
-
-    // --- EVENT LISTENERS ---
+    // --- EVENT LISTENERS (ALL WRAPPED IN NULL CHECKS) ---
     if (dom.loginBtn) dom.loginBtn.addEventListener('click', () => setupAuthModal(true));
     if (dom.signupBtn) dom.signupBtn.addEventListener('click', () => setupAuthModal(false));
     if (dom.authCloseBtn) dom.authCloseBtn.addEventListener('click', () => hideModal(dom.authModal));
-    if (dom.toggleAuthLink) dom.toggleAuthLink.addEventListener('click', (e) => {
-        e.preventDefault();
-        setupAuthModal(!isLoginMode);
-    });
+    if (dom.toggleAuthLink) {
+        dom.toggleAuthLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            setupAuthModal(!isLoginMode);
+        });
+    }
     if (dom.authForm) dom.authForm.addEventListener('submit', handleAuthSubmit);
     if (dom.logoutBtn) dom.logoutBtn.addEventListener('click', handleLogout);
     if (dom.completionCloseBtn) dom.completionCloseBtn.addEventListener('click', () => hideModal(dom.completionModal));
     
-    // Event delegation for module cards
     if (dom.modulesContainer) {
         dom.modulesContainer.addEventListener('click', (e) => {
-            const header = e.target.closest('.module-header');
+            const moduleHeader = e.target.closest('.module-header');
             const completeBtn = e.target.closest('.complete-btn');
 
             if (completeBtn) {
@@ -254,8 +259,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            if (header) {
-                const card = header.closest('.module-card');
+            if (moduleHeader) {
+                const card = moduleHeader.closest('.module-card');
                 if (card && !card.classList.contains('locked')) {
                     card.classList.toggle('is-expanded');
                 }
@@ -263,7 +268,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Close modals on outside click
     window.addEventListener('click', (e) => {
         if (e.target === dom.authModal) hideModal(dom.authModal);
         if (e.target === dom.completionModal) hideModal(dom.completionModal);
