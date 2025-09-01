@@ -1,4 +1,5 @@
 // server.js
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
@@ -8,9 +9,7 @@ const cors = require('cors');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-
-// You MUST change this to a strong, random string in a real application
-const SECRET_KEY = 'your_super_secret_key_here';
+const SECRET_KEY = 'your_super_secret_key_here'; // Replace with a strong, random key
 
 // Use middleware for parsing JSON, handling CORS, and serving files
 app.use(cors());
