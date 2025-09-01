@@ -1,5 +1,4 @@
 // server.js
-
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
@@ -11,20 +10,17 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // You MUST change this to a strong, random string in a real application
-const SECRET_KEY = 'your_very_secret_key_here'; 
+const SECRET_KEY = 'your_super_secret_key_here';
 
-// Use middleware
+// Use middleware for parsing JSON, handling CORS, and serving files
 app.use(cors());
 app.use(bodyParser.json());
 
-// In-memory 'database' for demonstration purposes
-// In a real application, you would use a database like MongoDB or PostgreSQL.
+// In-memory 'database' for demonstration. In a real app, use a proper database.
 const users = {};
 const userProgress = {};
 
 // --- Helper Functions ---
-
-// Middleware to protect API routes
 const authenticateToken = (req, res, next) => {
     const authHeader = req.headers['authorization'];
     const token = authHeader && authHeader.split(' ')[1];
@@ -45,7 +41,7 @@ const authenticateToken = (req, res, next) => {
 
 // --- API Endpoints ---
 
-// Handles user signup
+// User Signup
 app.post('/api/signup', async (req, res) => {
     const { username, password } = req.body;
     if (users[username]) {
@@ -53,13 +49,12 @@ app.post('/api/signup', async (req, res) => {
     }
     const hashedPassword = await bcrypt.hash(password, 10);
     users[username] = { password: hashedPassword };
-    // Initialize progress for the new user
     userProgress[username] = { completedModules: 0, phaseProgress: {} };
     console.log(`✅ New user signed up: ${username}`);
     res.status(201).json({ message: 'User created successfully' });
 });
 
-// Handles user login
+// User Login
 app.post('/api/login', async (req, res) => {
     const { username, password } = req.body;
     const user = users[username];
@@ -75,7 +70,7 @@ app.post('/api/login', async (req, res) => {
     res.json({ token, username });
 });
 
-// Saves user progress to the 'database'
+// Save User Progress (Protected Route)
 app.post('/api/progress/save', authenticateToken, (req, res) => {
     const { username } = req.user;
     const { progress } = req.body;
@@ -84,7 +79,7 @@ app.post('/api/progress/save', authenticateToken, (req, res) => {
     res.status(200).json({ message: 'Progress saved successfully' });
 });
 
-// Loads user progress from the 'database'
+// Load User Progress (Protected Route)
 app.get('/api/progress/load', authenticateToken, (req, res) => {
     const { username } = req.user;
     const progress = userProgress[username] || { completedModules: 0, phaseProgress: {} };
@@ -92,11 +87,10 @@ app.get('/api/progress/load', authenticateToken, (req, res) => {
     res.status(200).json({ progress });
 });
 
-// --- Serve Static Files ---
-// This serves your HTML, CSS, and JS files to the browser.
+// Serve static files from the 'public' directory
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Any other GET request will return the main index.html file
+// Fallback for all other GET requests to serve the main HTML file
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
