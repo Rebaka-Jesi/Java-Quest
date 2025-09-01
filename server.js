@@ -1,279 +1,107 @@
-// This entire script should be in a file like 'app.js' or 'client.js'
-// and included in your HTML: <script src="app.js" defer></script>
+// server.js
 
-document.addEventListener('DOMContentLoaded', () => {
-    // --- DOM ELEMENT SELECTIONS ---
-    const dom = {
-        // Auth Elements
-        loginBtn: document.querySelector('.btn-login'),
-        signupBtn: document.querySelector('.btn-signup'),
-        authModal: document.getElementById('authModal'),
-        authForm: document.getElementById('auth-form'),
-        authCloseBtn: document.querySelector('.auth-close-btn'),
-        toggleAuthLink: document.getElementById('toggle-auth'),
-        authModalTitle: document.getElementById('auth-modal-title'),
-        authSubmitBtn: document.getElementById('auth-submit-btn'),
-        authErrorMsg: document.getElementById('auth-error-msg'),
-        authUsernameInput: document.getElementById('auth-username'),
-        authPasswordInput: document.getElementById('auth-password'),
+const express = require('express');
+const bodyParser = require('body-parser');
+const path = require('path');
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
+const cors = require('cors');
 
-        // Profile Elements
-        profileMenu: document.getElementById('profileMenu'),
-        profileUsername: document.getElementById('profileUsername'),
-        logoutBtn: document.getElementById('logoutBtn'),
+const app = express();
+const PORT = process.env.PORT || 3000;
 
-        // Progress Elements
-        progressBar: document.getElementById('progressBar'),
-        progressText: document.getElementById('progressText'),
-        modulesContainer: document.querySelector('.modules-container'),
+// You MUST change this to a strong, random string in a real application
+const SECRET_KEY = 'your_very_secret_key_here'; 
 
-        // Completion Modal Elements
-        completionModal: document.getElementById('completionModal'),
-        completionModalTitle: document.getElementById('completion-modal-title'),
-        completionModalText: document.getElementById('completion-modal-text'),
-        completionCloseBtn: document.querySelector('.completion-close-btn')
-    };
+// Use middleware
+app.use(cors());
+app.use(bodyParser.json());
 
-    // --- STATE ---
-    let isLoginMode = true;
-    let progress = { completedModules: 0, phaseProgress: {} };
-    const totalModulesOverall = 23; // Hardcoded for simplicity
+// In-memory 'database' for demonstration purposes
+// In a real application, you would use a database like MongoDB or PostgreSQL.
+const users = {};
+const userProgress = {};
 
-    // --- API & PROGRESS LOGIC ---
+// --- Helper Functions ---
 
-    const fetchAPI = async (endpoint, options = {}) => {
-        try {
-            const response = await fetch(endpoint, options);
-            const data = await response.json();
-            if (!response.ok) {
-                throw new Error(data.message || `HTTP error! status: ${response.status}`);
-            }
-            return data;
-        } catch (error) {
-            console.error(`API Error on ${endpoint}:`, error);
-            throw error;
-        }
-    };
+// Middleware to protect API routes
+const authenticateToken = (req, res, next) => {
+    const authHeader = req.headers['authorization'];
+    const token = authHeader && authHeader.split(' ')[1];
 
-    const saveProgress = async () => {
-        const token = localStorage.getItem('userToken');
-        if (!token) return;
-        try {
-            await fetchAPI('/api/progress/save', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`
-                },
-                body: JSON.stringify({ progress })
-            });
-        } catch (error) {
-            console.error("Failed to save progress to server.");
-        }
-    };
-
-    const loadProgress = async () => {
-        const token = localStorage.getItem('userToken');
-        if (!token) {
-            applyProgressUI();
-            return;
-        }
-        try {
-            const data = await fetchAPI('/api/progress/load', {
-                headers: { 'Authorization': `Bearer ${token}` }
-            });
-            progress = data.progress || { completedModules: 0, phaseProgress: {} };
-        } catch (error) {
-            console.error('Failed to load progress, logging out:', error);
-            handleLogout();
-        } finally {
-            applyProgressUI();
-        }
-    };
-
-    // --- UI UPDATE FUNCTIONS ---
-
-    const updateProgressBar = () => {
-        const completedCount = Object.keys(progress.phaseProgress || {}).length;
-        const percentage = totalModulesOverall > 0 ? (completedCount / totalModulesOverall) * 100 : 0;
-        if (dom.progressBar) dom.progressBar.style.width = `${percentage}%`;
-        if (dom.progressText) dom.progressText.textContent = `${Math.round(percentage)}% Complete`;
-    };
-
-    const applyProgressUI = () => {
-        let maxCompleted = 0;
-        document.querySelectorAll('.module-card').forEach(card => {
-            const moduleId = parseInt(card.dataset.module, 10);
-            const isCompleted = progress.phaseProgress[`module_${moduleId}`];
-
-            card.classList.toggle('completed', isCompleted);
-            card.classList.remove('active', 'locked');
-            
-            const statusEl = card.querySelector('.module-status');
-            const btnEl = card.querySelector('.complete-btn');
-
-            if (isCompleted) {
-                if (statusEl) statusEl.textContent = 'Completed';
-                if (btnEl) btnEl.disabled = true;
-                maxCompleted = Math.max(maxCompleted, moduleId);
-            }
-        });
-
-        const nextModuleId = maxCompleted + 1;
-        const nextCard = document.querySelector(`.module-card[data-module="${nextModuleId}"]`);
-        
-        if (nextCard) {
-            nextCard.classList.add('active');
-            const statusEl = nextCard.querySelector('.module-status');
-            const btnEl = nextCard.querySelector('.complete-btn');
-            if (statusEl) statusEl.textContent = 'Current';
-            if (btnEl) btnEl.disabled = false;
-        }
-
-        document.querySelectorAll('.module-card').forEach(card => {
-            const moduleId = parseInt(card.dataset.module, 10);
-            if (moduleId > nextModuleId) {
-                card.classList.add('locked');
-                const statusEl = card.querySelector('.module-status');
-                const btnEl = card.querySelector('.complete-btn');
-                if (statusEl) statusEl.textContent = 'Locked';
-                if (btnEl) btnEl.disabled = true;
-            }
-        });
-
-        updateProgressBar();
-    };
-
-    const updateAuthUI = () => {
-        const username = localStorage.getItem('username');
-        const loggedIn = !!username;
-
-        // CORRECTED: Added checks to prevent errors if elements don't exist
-        if (dom.loginBtn) dom.loginBtn.style.display = loggedIn ? 'none' : 'flex';
-        if (dom.signupBtn) dom.signupBtn.style.display = loggedIn ? 'none' : 'flex';
-        if (dom.profileMenu) dom.profileMenu.style.display = loggedIn ? 'flex' : 'none';
-        if (dom.profileUsername) dom.profileUsername.textContent = loggedIn ? `Hello, ${username}` : '';
-    };
-
-    const showModal = (modalElement) => {
-        if (modalElement) modalElement.classList.add('is-visible');
-    };
-
-    const hideModal = (modalElement) => {
-        if (modalElement) modalElement.classList.remove('is-visible');
-    };
-
-    const setupAuthModal = (isLogin) => {
-        isLoginMode = isLogin;
-        if (dom.authModalTitle) dom.authModalTitle.textContent = isLogin ? 'Log In' : 'Sign Up';
-        if (dom.authSubmitBtn) dom.authSubmitBtn.textContent = isLogin ? 'Log In' : 'Sign Up';
-        if (dom.toggleAuthLink) dom.toggleAuthLink.textContent = isLogin ? "Don't have an account? Sign Up" : 'Already have an account? Log In';
-        if (dom.authErrorMsg) dom.authErrorMsg.textContent = '';
-        if (dom.authForm) dom.authForm.reset();
-        showModal(dom.authModal);
-    };
-
-    // --- EVENT HANDLERS ---
-
-    const handleAuthSubmit = async (e) => {
-        e.preventDefault();
-        const username = dom.authUsernameInput?.value?.trim();
-        const password = dom.authPasswordInput?.value;
-        if (!username || !password) {
-            if (dom.authErrorMsg) dom.authErrorMsg.textContent = 'Please enter username and password.';
-            return;
-        }
-
-        const endpoint = isLoginMode ? '/api/login' : '/api/signup';
-        try {
-            const data = await fetchAPI(endpoint, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ username, password })
-            });
-
-            if (isLoginMode) {
-                localStorage.setItem('userToken', data.token);
-                localStorage.setItem('username', data.username);
-                updateAuthUI();
-                hideModal(dom.authModal);
-                await loadProgress();
-            } else {
-                setupAuthModal(true);
-            }
-        } catch (error) {
-            if (dom.authErrorMsg) dom.authErrorMsg.textContent = error.message;
-        }
-    };
-    
-    const handleLogout = () => {
-        localStorage.removeItem('userToken');
-        localStorage.removeItem('username');
-        progress = { completedModules: 0, phaseProgress: {} };
-        updateAuthUI();
-        applyProgressUI();
-    };
-
-    const handleCompleteModule = async (moduleIdStr) => {
-        if (!localStorage.getItem('userToken')) {
-            showModal(dom.authModal);
-            return;
-        }
-        
-        // CORRECTED: Ensure moduleId is a number
-        const moduleId = parseInt(moduleIdStr, 10);
-        if (isNaN(moduleId)) return; // Exit if moduleId is not a valid number
-
-        progress.phaseProgress[`module_${moduleId}`] = true;
-        applyProgressUI();
-        
-        if (dom.completionModalTitle) dom.completionModalTitle.textContent = `Level ${moduleId} Complete!`;
-        if (dom.completionModalText) dom.completionModalText.textContent = "Great job! On to the next challenge.";
-        showModal(dom.completionModal);
-
-        await saveProgress();
-    };
-
-    // --- EVENT LISTENERS (ALL WRAPPED IN NULL CHECKS) ---
-    if (dom.loginBtn) dom.loginBtn.addEventListener('click', () => setupAuthModal(true));
-    if (dom.signupBtn) dom.signupBtn.addEventListener('click', () => setupAuthModal(false));
-    if (dom.authCloseBtn) dom.authCloseBtn.addEventListener('click', () => hideModal(dom.authModal));
-    if (dom.toggleAuthLink) {
-        dom.toggleAuthLink.addEventListener('click', (e) => {
-            e.preventDefault();
-            setupAuthModal(!isLoginMode);
-        });
-    }
-    if (dom.authForm) dom.authForm.addEventListener('submit', handleAuthSubmit);
-    if (dom.logoutBtn) dom.logoutBtn.addEventListener('click', handleLogout);
-    if (dom.completionCloseBtn) dom.completionCloseBtn.addEventListener('click', () => hideModal(dom.completionModal));
-    
-    if (dom.modulesContainer) {
-        dom.modulesContainer.addEventListener('click', (e) => {
-            const moduleHeader = e.target.closest('.module-header');
-            const completeBtn = e.target.closest('.complete-btn');
-
-            if (completeBtn) {
-                const moduleId = completeBtn.dataset.module;
-                handleCompleteModule(moduleId);
-                return;
-            }
-
-            if (moduleHeader) {
-                const card = moduleHeader.closest('.module-card');
-                if (card && !card.classList.contains('locked')) {
-                    card.classList.toggle('is-expanded');
-                }
-            }
-        });
+    if (token == null) {
+        return res.status(401).json({ message: 'Authentication token is required.' });
     }
 
-    window.addEventListener('click', (e) => {
-        if (e.target === dom.authModal) hideModal(dom.authModal);
-        if (e.target === dom.completionModal) hideModal(dom.completionModal);
+    jwt.verify(token, SECRET_KEY, (err, user) => {
+        if (err) {
+            console.error('JWT verification failed:', err.message);
+            return res.status(403).json({ message: 'Invalid or expired token.' });
+        }
+        req.user = user;
+        next();
     });
+};
 
-    // --- INITIALIZATION ---
-    updateAuthUI();
-    loadProgress();
+// --- API Endpoints ---
+
+// Handles user signup
+app.post('/api/signup', async (req, res) => {
+    const { username, password } = req.body;
+    if (users[username]) {
+        return res.status(409).json({ message: 'Username already exists' });
+    }
+    const hashedPassword = await bcrypt.hash(password, 10);
+    users[username] = { password: hashedPassword };
+    // Initialize progress for the new user
+    userProgress[username] = { completedModules: 0, phaseProgress: {} };
+    console.log(`✅ New user signed up: ${username}`);
+    res.status(201).json({ message: 'User created successfully' });
+});
+
+// Handles user login
+app.post('/api/login', async (req, res) => {
+    const { username, password } = req.body;
+    const user = users[username];
+    if (!user) {
+        return res.status(400).json({ message: 'Invalid username or password' });
+    }
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+    if (!isPasswordValid) {
+        return res.status(400).json({ message: 'Invalid username or password' });
+    }
+    const token = jwt.sign({ username: username }, SECRET_KEY);
+    console.log(`➡️ User logged in: ${username}`);
+    res.json({ token, username });
+});
+
+// Saves user progress to the 'database'
+app.post('/api/progress/save', authenticateToken, (req, res) => {
+    const { username } = req.user;
+    const { progress } = req.body;
+    userProgress[username] = progress;
+    console.log(`💾 Progress saved for ${username}. Completed modules: ${Object.keys(progress.phaseProgress).length}`);
+    res.status(200).json({ message: 'Progress saved successfully' });
+});
+
+// Loads user progress from the 'database'
+app.get('/api/progress/load', authenticateToken, (req, res) => {
+    const { username } = req.user;
+    const progress = userProgress[username] || { completedModules: 0, phaseProgress: {} };
+    console.log(`➡️ Progress loaded for ${username}. Completed modules: ${Object.keys(progress.phaseProgress).length}`);
+    res.status(200).json({ progress });
+});
+
+// --- Serve Static Files ---
+// This serves your HTML, CSS, and JS files to the browser.
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Any other GET request will return the main index.html file
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
+// Start the server
+app.listen(PORT, () => {
+    console.log(`Server is running on http://localhost:${PORT}`);
 });
